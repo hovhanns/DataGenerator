@@ -5,7 +5,6 @@
 
 class TimestampGenerator:
     def __init__(self, start, end, step):
-        #todo parse to timestamps
         self.__start = start
         self.__end = end
         self.__step = step
