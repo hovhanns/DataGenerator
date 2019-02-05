@@ -1,0 +1,22 @@
+/*
+    CONSTANT            - C
+    NEAR_CONSTANT       - NC
+    TRENDY              - T
+    NEAR_TRENDY         - NT
+    STATIONARY          - S
+    TREND_STATIONARY    - TS
+    UNIT_ROOT           - UR
+*/
+
+
+{
+  "start": "2018-11-20 7:00:00",
+  "end": "2018-11-20 8:00:00",
+  "step": "5m",
+  "data": {
+    "type": "NC",
+    "const": 5,
+    "noise_percent": 5
+  }
+
+}
