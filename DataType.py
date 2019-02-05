@@ -1,9 +1,10 @@
-from enum import Enum
+from enum import Enum, unique
 
 
 """This class is for storing all data types"""
 
 
+@unique
 class DataType(Enum):
     CONSTANT = 1
     NEAR_CONSTANT = 2
