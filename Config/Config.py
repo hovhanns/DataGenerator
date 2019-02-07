@@ -19,16 +19,16 @@ class Config:
         if match is not None:
             #
             d = {
-                "s": 60,
-                "m": 60 * 60,
-                "h": 60 * 60 * 60,
-                "d": 60 * 60 * 60 * 24
+                "s": 1,
+                "m": 60,
+                "h": 60 * 60,
+                "d": 60 * 60 * 24
             }
             num = match.group(1)
             t = match.group(2)
 
             # step to millis
-            self.__step = int(num) * d[t] * 1000
+            self.__config["step"] = int(num) * d[t] * 1000
         else:
             raise ValueError("the step isn't set correctly")
 

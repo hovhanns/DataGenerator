@@ -12,7 +12,9 @@ class TimestampGenerator:
 
     def generate(self):
         #todo generate timestamps list and return
-        timestamps = [22, 322, 5]
+        timestamps = []
+        for i in range(self.__start, self.__end, self.__step):
+            timestamps.append(i)
         return timestamps
 
     def get_length(self):
