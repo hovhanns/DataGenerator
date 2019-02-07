@@ -2,4 +2,4 @@
 .idea
 *.log
 *.pyc
-DataGenerator/jupyter/.ipynb_checkpoints/*
+jupyter/.ipynb_checkpoints/*
