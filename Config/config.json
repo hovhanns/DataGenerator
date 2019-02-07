@@ -3,7 +3,7 @@
   "end": "2018-11-20 8:00:00",
   "step": "5m",
   "data": {
-    "type": "NC",
+    "type": "NEAR_CONSTANT",
     "const": 5,
     "noise_percent": 5
   }
