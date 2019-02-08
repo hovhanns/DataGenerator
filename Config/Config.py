@@ -10,12 +10,20 @@ class Config:
         with open(self.__config_file) as f:
             self.__config = json.load(f)
 
-        self.__config["start"] = self.__start = int(
-            datetime.strptime(self.__config["start"], "%Y-%m-%d %H:%M:%S").strftime("%s") + "000")
-        self.__config["end"] = self.__start = int(
-            datetime.strptime(self.__config["end"], "%Y-%m-%d %H:%M:%S").strftime("%s") + "000")
+        self.__config["start"] = Config.__parse_date_to_millis(self.__config["start"])
+        self.__config["end"] = Config.__parse_date_to_millis(self.__config["end"])
+        self.__config["step"] = Config.__parse_step_to_millis(self.__config["step"])
 
-        match = re.search("(\d+)([smhd])(\\b)", self.__config["step"])
+    def get_config(self):
+        return self.__config
+
+    @staticmethod
+    def __parse_date_to_millis(date):
+        return int(datetime.strptime(date, "%Y-%m-%d %H:%M:%S").strftime("%s") + "000")
+
+    @staticmethod
+    def __parse_step_to_millis(step):
+        match = re.search("(\d+)([smhd])(\\b)", step)
         if match is not None:
             #
             d = {
@@ -28,9 +36,6 @@ class Config:
             t = match.group(2)
 
             # step to millis
-            self.__config["step"] = int(num) * d[t] * 1000
+            return int(num) * d[t] * 1000
         else:
             raise ValueError("the step isn't set correctly")
-
-    def get_config(self):
-        return self.__config
