@@ -1,10 +1,44 @@
-{
-  "start": "2018-11-20 7:00:00",
-  "end": "2018-11-20 8:00:00",
-  "step": "5m",
-  "data": {
-    "type": "NEAR_CONSTANT",
-    "const": 5,
-    "noise_percent": 5
+[
+  {
+    "metric": "test.ingest.const",
+    "source": "nnTesting",
+    "data": [
+      {
+        "start": "2018-11-20 7:00:00",
+        "end": "2018-11-20 8:00:00",
+        "step": "1m",
+        "type": "NEAR_CONSTANT",
+        "const": 5,
+        "noise_percent": 5
+      },
+      {
+        "start": "2018-11-20 8:00:00",
+        "end": "2018-11-20 10:00:00",
+        "step": "1m",
+        "type": "CONSTANT",
+        "const": 5
+      }
+    ]
+  },
+  {
+    "metric": "test.ingest.trendy",
+    "source": "nnTesting",
+    "data": [
+      {
+        "start": "2018-11-20 7:00:00",
+        "end": "2018-11-20 8:00:00",
+        "step": "1m",
+        "type": "NEAR_CONSTANT",
+        "const": 5,
+        "noise_percent": 5
+      },
+      {
+        "start": "2018-11-20 8:00:00",
+        "end": "2018-11-20 10:00:00",
+        "step": "1m",
+        "type": "CONSTANT",
+        "const": 5
+      }
+    ]
   }
-}
+]
