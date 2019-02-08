@@ -25,11 +25,11 @@ class Core:
         return linear
 
     @staticmethod
-    def const(b=3, size=100):
-        return Core.trendy(0, b, size)
+    def const(const=3, size=100):
+        return Core.trendy(0, const, size)
 
     @staticmethod
-    def noise(noise_per=5, amplitude=10, size=100):
+    def __noise(noise_per=5, amplitude=10, size=100):
         import time
         np.random.seed(int(time.time()))
         noise_per /= 100
@@ -44,15 +44,15 @@ class Core:
         return noise
 
     @staticmethod
-    def near_trendy(k=3, b=3, noise_per=5, amplitude=3, size=100):
+    def near_trendy(k=3, b=3, noise_percent=5, amplitude=3, size=100):
         tr = Core.trendy(k, b, size)
-        nc = Core.noise(noise_per=noise_per, size=size, amplitude=amplitude)
+        nc = Core.__noise(noise_per=noise_percent, size=size, amplitude=amplitude)
         near_t = tr + nc
         return near_t
 
     @staticmethod
-    def near_constant(const=5, noise_per=5, amplitude=5, size=100):
-        return Core.near_trendy(k=0, b=const, noise_per=noise_per, amplitude=amplitude, size=size)
+    def near_constant(const=5, noise_percent=5, amplitude=5, size=100):
+        return Core.near_trendy(k=0, b=const, noise_percent=noise_percent, amplitude=amplitude, size=size)
 
     @staticmethod
     def trend_stationary(k=3, b=3, mean=10, scale=10, size=100):
