@@ -10,6 +10,6 @@ class DataGenerator:
         tgen = TimestampGenerator(self.__config["start"], self.__config["end"], self.__config["step"])
         timestamps = tgen.generate()
 
-        vgen = ValueGenerator(self.__config["data"]["type"], len(timestamps))
+        vgen = ValueGenerator(self.__config["type"], len(timestamps))
         values = vgen.generate()
         return zip(values, timestamps)
