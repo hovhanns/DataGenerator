@@ -10,10 +10,10 @@ from Config import Config
 
 conf = Config("Config/config.json").get_config()
 
-for metrics in conf:
-    for data in metrics["data"]:
+for metric in conf["metrics"]:
+    for data in metric["data"]:
         dgen = DataGenerator(data)
         tplist = list(dgen.generate())
-        metrics_dict = {metrics["metric"]: tplist}
+        metrics_dict = {metric["metric"]: tplist}
         print(metrics_dict)
 # dat = Process.process_historical_data_dictionary(metrics_dict, source_name="my_source", include_tag=False)

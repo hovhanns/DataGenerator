@@ -10,7 +10,7 @@ class Config:
         with open(self.__config_file) as f:
             self.__config = json.load(f)
 
-        for metric in self.__config:
+        for metric in self.__config["metrics"]:
             for d in metric["data"]:
                 d["start"] = Config.__parse_date_to_millis(d["start"])
                 d["end"] = Config.__parse_date_to_millis(d["end"])
