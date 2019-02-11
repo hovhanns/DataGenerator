@@ -44,3 +44,22 @@ def rand_heap(start, end, num, random_function):
     for j in range(num):
         heapq.heappush(random_values, random_function(start, end))
     return random_values
+
+
+def rand_list(start, end, num, random_function):
+    """Documentation for a function.
+
+    More details.
+    Returns sorted list with num random values
+    between start and end dates
+    @param start start date
+    @param end end date
+    @param num size of the queue
+    @param random_function generates random value
+    @return sorted list with random values
+    """
+    random_values = []
+    for j in range(num):
+        random_values.append(random_function(start, end))
+    random_values.sort()
+    return random_values
