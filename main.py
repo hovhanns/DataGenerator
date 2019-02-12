@@ -10,8 +10,8 @@ from Wavefront import Process
 from Wavefront import Importer
 
 conf = Config("Config/config.json").get_config()
-
 imp = Importer(conf["wavefront"]["cluster"], conf["wavefront"]["token"])
+
 for metric in conf["metrics"]:
     for data in metric["data"]:
         dgen = DataGenerator(data)
@@ -21,4 +21,7 @@ for metric in conf["metrics"]:
         #print(processed)
         print(imp.import_data(processed))
         #print(metrics_dict)
+
+        print(metrics_dict)
+
 # dat = Process.process_historical_data_dictionary(metrics_dict, source_name="my_source", include_tag=False)
