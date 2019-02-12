@@ -1,48 +1,30 @@
 {
-  "wavefront":{
-    "cluster": "urwelcome.wavefront.com",
-    "token":"temporarytoken"
+  "guide": [
+    "We have the following types of data, each one has parameters list, which should be passed",
+    "CONSTANT(const=3)",
+    "NEAR_CONSTANT(const=3, noise_percent=5, amplitude=5)",
+    "TRENDY(k=3, b=3)   # y = k*x + b" ,
+    "NEAR_TRENDY(k=3, b=3, noise_percent=5, amplitude=5)",
+    "STATIONARY(mean=20, scale=10)",
+    "TREND_STATIONARY(k=3, b=3, mean=20, scale=10)",
+    "UNIT_ROOT(mean=10, scale=100)"
+  ],
+  "wavefront": {
+    "cluster": "urwelcome-2c.corp.wavefront.com",
+    "token": "652e4f6b-7401-4ec9-ad9b-2744dbba91d5"
   },
   "metrics": [
     {
-      "metric": "test.ingest.const",
-      "source": "nnTesting",
-      "data": [
-        {
-          "start": "2018-11-20 7:00:00",
-          "end": "2018-11-20 8:00:00",
-          "step": "1m",
-          "type": "NEAR_CONSTANT",
-          "const": 5,
-          "noise_percent": 5
-        },
-        {
-          "start": "2018-11-20 8:00:00",
-          "end": "2018-11-20 10:00:00",
-          "step": "1m",
-          "type": "CONSTANT",
-          "const": 5
-        }
-      ]
-    },
-    {
       "metric": "test.ingest.trendy",
-      "source": "nnTesting",
+      "source": "internal-nnTesting",
       "data": [
         {
-          "start": "2018-11-20 7:00:00",
-          "end": "2018-11-20 8:00:00",
-          "step": "1m",
-          "type": "NEAR_CONSTANT",
+          "start": "2019-02-10 7:00:00",
+          "end": "2019-02-12 8:00:00",
+          "step": "5m",
+          "type": "TREND_STATIONARY",
           "const": 5,
           "noise_percent": 5
-        },
-        {
-          "start": "2018-11-20 8:00:00",
-          "end": "2018-11-20 10:00:00",
-          "step": "1m",
-          "type": "CONSTANT",
-          "const": 5
         }
       ]
     }
