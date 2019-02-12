@@ -1,7 +1,17 @@
 {
-  "wavefront":{
+  "guide": [
+    "We have the following types of data, each one has parameters list, which should be passed",
+    "CONSTANT(const=3)",
+    "NEAR_CONSTANT(const=3, noise_percent=5, amplitude=5)",
+    "TRENDY(k=3, b=3)   # y = k*x + b" ,
+    "NEAR_TRENDY(k=3, b=3, noise_percent=5, amplitude=5)",
+    "STATIONARY(mean=20, scale=10)",
+    "TREND_STATIONARY(k=3, b=3, mean=20, scale=10)",
+    "UNIT_ROOT(mean=10, scale=100)"
+  ],
+  "wavefront": {
     "cluster": "urwelcome-2c.corp.wavefront.com",
-    "token":"652e4f6b-7401-4ec9-ad9b-2744dbba91d5"
+    "token": "652e4f6b-7401-4ec9-ad9b-2744dbba91d5"
   },
   "metrics": [
     {
