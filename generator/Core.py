@@ -59,3 +59,12 @@ class Core:
         linear = Core.trendy(k=k, b=b, size=size)
         stat = Core.stationary(mean=mean, scale=scale, size=size)
         return linear + stat
+
+    @staticmethod
+    def unit_root(mean=20, scale=10, size=100):
+        st = Core.stationary(mean=mean, scale=scale, size=size)
+        u_root = list()
+        u_root.append(st[0])
+        for i in range(1, len(st)):
+            u_root.append(u_root[i - 1] + st[i])
+        return u_root

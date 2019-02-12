@@ -13,7 +13,7 @@ class ValueGenerator:
         DataType.NEAR_TRENDY: Core.near_trendy,
         DataType.STATIONARY: Core.stationary,
         DataType.TREND_STATIONARY: Core.trend_stationary,
-        DataType.UNIT_ROOT: "here should be unit root function"
+        DataType.UNIT_ROOT: Core.unit_root
     }
 
     def __init__(self, type, size):
