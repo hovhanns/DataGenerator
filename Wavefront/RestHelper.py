@@ -1,5 +1,6 @@
 import logging
 from Rest import RestCall
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -7,6 +8,11 @@ logger = logging.getLogger(__name__)
 class RestHelper:
 
     def __init__(self, cluster, token):
+        match = re.search("(https?\:\/\/)(\w+)", cluster)
+        if match is None:
+            self.__URL_PREFIX = "https://"
+        else:
+            self.__URL_PREFIX = match.group(1)
         self.cluster = cluster
         self.token = token
 
@@ -20,10 +26,10 @@ class RestHelper:
         return headers
 
     def get_url(self):
-        return "http://" + self.cluster
+        return self.__URL_PREFIX + self.cluster
 
     def check_connection(self):
-        url = "https://" + self.cluster + "/api/v2/source"
+        url = self.get_url() + "/api/v2/source"
         header = self._get_auth_header()
         code, result = RestCall.send_get(url, header)
         logger.info(code)
@@ -48,7 +54,7 @@ class RestHelper:
 
         logger.info("sending data to WF")
 
-        url = "https://" + self.cluster + "/report"
+        url = self.get_url() + "/report"
         headers = self._get_auth_header()
         code, result = RestCall.send_post(url, headers, data)
         logger.info(code)
