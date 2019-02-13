@@ -15,16 +15,20 @@
   },
   "metrics": [
     {
-      "metric": "test.ingest.trendy",
+      "metric": "test.ingest.trendstationary",
       "source": "internal-nnTesting",
       "data": [
         {
           "start": "2019-02-10 7:00:00",
           "end": "2019-02-12 8:00:00",
-          "step": "5m",
+          "step": "1m",
           "type": "TREND_STATIONARY",
-          "const": 5,
-          "noise_percent": 5
+          "parameters": {
+            "k": 5,
+            "b": 20,
+            "mean":10,
+            "scale":1000
+          }
         }
       ]
     }
