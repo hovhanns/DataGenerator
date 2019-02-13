@@ -16,11 +16,12 @@ class ValueGenerator:
         DataType.UNIT_ROOT: Core.unit_root
     }
 
-    def __init__(self, type, size):
+    def __init__(self, type, size, parameters):
         self.__type = type
         self.__size = size
+        self.__parameters = parameters
         print("generating values . . . ")
 
     def generate(self):
-        values = ValueGenerator.type_functions[DataType[self.__type]](size=self.__size)
+        values = ValueGenerator.type_functions[DataType[self.__type]](size=self.__size, **self.__parameters)
         return values
