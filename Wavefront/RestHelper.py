@@ -8,12 +8,13 @@ logger = logging.getLogger(__name__)
 class RestHelper:
 
     def __init__(self, cluster, token):
-        match = re.search("(https?\:\/\/)(\w+)", cluster)
+        match = re.search("(https?\:\/\/)(.*)", cluster)
         if match is None:
             self.__URL_PREFIX = "https://"
+            self.cluster = cluster
         else:
             self.__URL_PREFIX = match.group(1)
-        self.cluster = cluster
+            self.cluster = match.group(2)
         self.token = token
 
     def _get_auth_header(self):
