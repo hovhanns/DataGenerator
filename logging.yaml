@@ -1,0 +1,64 @@
+version: 1
+formatters:
+  brief:
+    format: '%(message)s'
+  default:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  detail:
+    format: '%(asctime)s - %(name)s - %(levelname)s - File: %(filename)s - %(funcName)s() - Line: %(lineno)d -  %(message)s'
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: default
+    stream: ext://sys.stdout
+  rotatingFile:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: default
+    maxBytes: 102400      #100 kb
+    backupCount: 1000
+    filename: log/generator.log
+
+
+loggers:
+  __main__:
+    level: DEBUG
+    handlers: [rotatingFile]
+    propagate: no
+
+  Rest.RestCall:
+    level: DEBUG
+    handlers: [rotatingFile]
+    propagate: no
+
+  Wavefront.RestHelper:
+    level: DEBUG
+    handlers: [rotatingFile]
+    propagate: no
+
+  Wavefront.Importer:
+    level: DEBUG
+    handlers: [rotatingFile]
+    propagate: no
+
+  Wavefront.Process:
+    level: DEBUG
+    handlers: [rotatingFile]
+    propagate: no
+
+  DataGenerator:
+    level: DEBUG
+    handlers: [rotatingFile]
+    propagate: no
+
+  Config.Config:
+    level: DEBUG
+    handlers: [rotatingFile]
+    propagate: no
+
+root:
+  level: DEBUG
+  handlers: [rotatingFile]
+
