@@ -13,6 +13,7 @@ class Importer:
         self.cluster = cluster
         self.token = token
         self.chunk_size = 1000
+        self.thread_count = 100
 
     # TODO: remove this function where import_data_multi_thread works fine
     def import_data(self, data_list):
@@ -65,7 +66,7 @@ class Importer:
             tasks = [(data_list[i: i + self.chunk_size - 1], msg % (i, (i + self.chunk_size - 1)))
                      for i in range(0, len(data_list), self.chunk_size)]
 
-            with ThreadPoolExecutor(max_workers=100) as executor:
+            with ThreadPoolExecutor(max_workers=self.thread_count) as executor:
                 results = executor.map(lambda p: self.__import(*p), tasks)
 
             for result in results:
