@@ -22,7 +22,7 @@ for metric in conf["metrics"]:
         metrics_dict = {metric["metric"]: tplist}
         processed = Process.process_data_dictionary(metrics_dict, metric["source"])
         #print(processed)
-        logger.info(imp.import_data(processed))
+        logger.info(imp.import_data_multi_thread(processed))
         #print(metrics_dict)
 
         logger.debug(metrics_dict)
