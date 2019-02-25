@@ -1,6 +1,8 @@
 import logging
 from .RestHelper import RestHelper
 import threading
+from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import as_completed
 
 logger = logging.getLogger(__name__)
 
@@ -11,6 +13,7 @@ class Importer:
         self.cluster = cluster
         self.token = token
         self.chunk_size = 1000
+        self.thread_count = 100
 
     # TODO: remove this function where import_data_multi_thread works fine
     def import_data(self, data_list):
@@ -55,19 +58,21 @@ class Importer:
             logger.info("nothing to import")
             return 0
         logger.info("importing data")
+        import_res = False
         if len(data_list) < self.chunk_size:
-            self.__import(data_list, "data sent to Wavefront ")
+            import_res = self.__import(data_list, "data sent to Wavefront ")
         else:
             msg = "data from %d to %d sent to Wavefront "
-            threads = []
-            for i in range(0, len(data_list), self.chunk_size):
-                threads.append(threading.Thread(target=self.__import, args=(data_list[i: i + self.chunk_size - 1], msg % (i, (i + self.chunk_size - 1)))))
+            tasks = [(data_list[i: i + self.chunk_size - 1], msg % (i, (i + self.chunk_size - 1)))
+                     for i in range(0, len(data_list), self.chunk_size)]
 
-            for thread in threads:
-                thread.start()
+            with ThreadPoolExecutor(max_workers=self.thread_count) as executor:
+                results = executor.map(lambda p: self.__import(*p), tasks)
 
-            for thread in threads:
-                thread.join()
+            for result in results:
+                import_res = import_res and result
+
+        return import_res
 
     def __import(self, data_list, message):
         rh = RestHelper(self.cluster, token=self.token)
